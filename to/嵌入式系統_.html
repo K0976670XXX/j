@@ -1,0 +1,746 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="mobile-web-app-capable" content="yes">
+    <title>
+        嵌入式系統:
+    </title>
+    <link rel="icon" type="image/png" href="https://hackmd.io/favicon.png">
+    <link rel="apple-touch-icon" href="https://hackmd.io/apple-touch-icon.png">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha256-916EbMg70RQy9LHiGkXzG8hSg9EdNy97GazNG/aiY1w=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css" integrity="sha256-3iu9jgsy9TpTwXKb7bNQzqWekRX7pPK+2OLj3R922fo=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/octicons/3.5.0/octicons.min.css" integrity="sha256-QiWfLIsCT02Sdwkogf6YMiQlj4NE84MKkzEMkZnMGdg=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.5.1/themes/prism.min.css" integrity="sha256-vtR0hSWRc3Tb26iuN2oZHt3KRUomwTufNIf5/4oeCyg=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@hackmd/emojify.js@2.1.0/dist/css/basic/emojify.min.css" integrity="sha256-UOrvMOsSDSrW6szVLe8ZDZezBxh5IoIfgTwdNDgTjiU=" crossorigin="anonymous" />
+    <style>
+        @import url(https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i|Source+Code+Pro:300,400,500|Source+Sans+Pro:300,300i,400,400i,600,600i|Source+Serif+Pro&subset=latin-ext);.hljs{background:#fff;color:#333;display:block;overflow-x:auto;padding:.5em}.hljs-comment,.hljs-meta{color:#969896}.hljs-emphasis,.hljs-quote,.hljs-string,.hljs-strong,.hljs-template-variable,.hljs-variable{color:#df5000}.hljs-keyword,.hljs-selector-tag,.hljs-type{color:#a71d5d}.hljs-attribute,.hljs-bullet,.hljs-literal,.hljs-number,.hljs-symbol{color:#0086b3}.hljs-built_in,.hljs-builtin-name{color:#005cc5}.hljs-name,.hljs-section{color:#63a35c}.hljs-tag{color:#333}.hljs-attr,.hljs-selector-attr,.hljs-selector-class,.hljs-selector-id,.hljs-selector-pseudo,.hljs-title{color:#795da3}.hljs-addition{background-color:#eaffea;color:#55a532}.hljs-deletion{background-color:#ffecec;color:#bd2c00}.hljs-link{text-decoration:underline}.markdown-body{word-wrap:break-word;font-size:16px;line-height:1.5}.markdown-body:after,.markdown-body:before{content:"";display:table}.markdown-body:after{clear:both}.markdown-body>:first-child{margin-top:0!important}.markdown-body>:last-child{margin-bottom:0!important}.markdown-body a:not([href]){color:inherit;text-decoration:none}.markdown-body .absent{color:#c00}.markdown-body .anchor{float:left;line-height:1;margin-left:-20px;padding-right:4px}.markdown-body .anchor:focus{outline:none}.markdown-body blockquote,.markdown-body dl,.markdown-body ol,.markdown-body p,.markdown-body pre,.markdown-body table,.markdown-body ul{margin-bottom:16px;margin-top:0}.markdown-body hr{background-color:#e7e7e7;border:0;height:.25em;margin:24px 0;padding:0}.markdown-body blockquote{border-left:.25em solid #ddd;color:#777;font-size:16px;padding:0 1em}.markdown-body blockquote>:first-child{margin-top:0}.markdown-body blockquote>:last-child{margin-bottom:0}.markdown-body kbd,.popover kbd{background-color:#fcfcfc;border:1px solid;border-color:#ccc #ccc #bbb;border-radius:3px;box-shadow:inset 0 -1px 0 #bbb;color:#555;display:inline-block;font-size:11px;line-height:10px;padding:3px 5px;vertical-align:middle}.markdown-body .loweralpha{list-style-type:lower-alpha}.markdown-body h1,.markdown-body h2,.markdown-body h3,.markdown-body h4,.markdown-body h5,.markdown-body h6{font-weight:600;line-height:1.25;margin-bottom:16px;margin-top:24px}.markdown-body h1 .octicon-link,.markdown-body h2 .octicon-link,.markdown-body h3 .octicon-link,.markdown-body h4 .octicon-link,.markdown-body h5 .octicon-link,.markdown-body h6 .octicon-link{color:#000;vertical-align:middle;visibility:hidden}.markdown-body h1:hover .anchor,.markdown-body h2:hover .anchor,.markdown-body h3:hover .anchor,.markdown-body h4:hover .anchor,.markdown-body h5:hover .anchor,.markdown-body h6:hover .anchor{text-decoration:none}.markdown-body h1:hover .anchor .octicon-link,.markdown-body h2:hover .anchor .octicon-link,.markdown-body h3:hover .anchor .octicon-link,.markdown-body h4:hover .anchor .octicon-link,.markdown-body h5:hover .anchor .octicon-link,.markdown-body h6:hover .anchor .octicon-link{visibility:visible}.markdown-body h1 code,.markdown-body h1 tt,.markdown-body h2 code,.markdown-body h2 tt,.markdown-body h3 code,.markdown-body h3 tt,.markdown-body h4 code,.markdown-body h4 tt,.markdown-body h5 code,.markdown-body h5 tt,.markdown-body h6 code,.markdown-body h6 tt{font-size:inherit}.markdown-body h1{font-size:2em}.markdown-body h1,.markdown-body h2{border-bottom:1px solid #eee;padding-bottom:.3em}.markdown-body h2{font-size:1.5em}.markdown-body h3{font-size:1.25em}.markdown-body h4{font-size:1em}.markdown-body h5{font-size:.875em}.markdown-body h6{color:#777;font-size:.85em}.markdown-body ol,.markdown-body ul{padding-left:2em}.markdown-body ol.no-list,.markdown-body ul.no-list{list-style-type:none;padding:0}.markdown-body ol ol,.markdown-body ol ul,.markdown-body ul ol,.markdown-body ul ul{margin-bottom:0;margin-top:0}.markdown-body li>p{margin-top:16px}.markdown-body li+li{padding-top:.25em}.markdown-body dl{padding:0}.markdown-body dl dt{font-size:1em;font-style:italic;font-weight:700;margin-top:16px;padding:0}.markdown-body dl dd{margin-bottom:16px;padding:0 16px}.markdown-body table{display:block;overflow:auto;width:100%;word-break:normal;word-break:keep-all}.markdown-body table th{font-weight:700}.markdown-body table td,.markdown-body table th{border:1px solid #ddd;padding:6px 13px}.markdown-body table tr{background-color:#fff;border-top:1px solid #ccc}.markdown-body table tr:nth-child(2n){background-color:#f8f8f8}.markdown-body img{background-color:#fff;box-sizing:initial;max-width:100%}.markdown-body img[align=right]{padding-left:20px}.markdown-body img[align=left]{padding-right:20px}.markdown-body .emoji{background-color:initial;max-width:none;vertical-align:text-top}.markdown-body span.frame{display:block;overflow:hidden}.markdown-body span.frame>span{border:1px solid #ddd;display:block;float:left;margin:13px 0 0;overflow:hidden;padding:7px;width:auto}.markdown-body span.frame span img{display:block;float:left}.markdown-body span.frame span span{clear:both;color:#333;display:block;padding:5px 0 0}.markdown-body span.align-center{clear:both;display:block;overflow:hidden}.markdown-body span.align-center>span{display:block;margin:13px auto 0;overflow:hidden;text-align:center}.markdown-body span.align-center span img{margin:0 auto;text-align:center}.markdown-body span.align-right{clear:both;display:block;overflow:hidden}.markdown-body span.align-right>span{display:block;margin:13px 0 0;overflow:hidden;text-align:right}.markdown-body span.align-right span img{margin:0;text-align:right}.markdown-body span.float-left{display:block;float:left;margin-right:13px;overflow:hidden}.markdown-body span.float-left span{margin:13px 0 0}.markdown-body span.float-right{display:block;float:right;margin-left:13px;overflow:hidden}.markdown-body span.float-right>span{display:block;margin:13px auto 0;overflow:hidden;text-align:right}.markdown-body code,.markdown-body tt{background-color:#0000000a;border-radius:3px;font-size:85%;margin:0;padding:.2em 0}.markdown-body code:after,.markdown-body code:before,.markdown-body tt:after,.markdown-body tt:before{content:"\00a0";letter-spacing:-.2em}.markdown-body code br,.markdown-body tt br{display:none}.markdown-body del code{text-decoration:inherit}.markdown-body pre{word-wrap:normal}.markdown-body pre>code{background:#0000;border:0;font-size:100%;margin:0;padding:0;white-space:pre;word-break:normal}.markdown-body .highlight{margin-bottom:16px}.markdown-body .highlight pre{margin-bottom:0;word-break:normal}.markdown-body .highlight pre,.markdown-body pre{background-color:#f7f7f7;border-radius:3px;font-size:85%;line-height:1.45;overflow:auto;padding:16px}.markdown-body pre code,.markdown-body pre tt{word-wrap:normal;background-color:initial;border:0;display:inline;line-height:inherit;margin:0;max-width:auto;overflow:visible;padding:0}.markdown-body pre code:after,.markdown-body pre code:before,.markdown-body pre tt:after,.markdown-body pre tt:before{content:normal}.markdown-body .csv-data td,.markdown-body .csv-data th{font-size:12px;line-height:1;overflow:hidden;padding:5px;text-align:left;white-space:nowrap}.markdown-body .csv-data .blob-line-num{background:#fff;border:0;padding:10px 8px 9px;text-align:right}.markdown-body .csv-data tr{border-top:0}.markdown-body .csv-data th{background:#f8f8f8;border-top:0;font-weight:700}.news .alert .markdown-body blockquote{border:0;padding:0 0 0 40px}.activity-tab .news .alert .commits,.activity-tab .news .markdown-body blockquote{padding-left:0}.task-list-item{list-style-type:none}.task-list-item label{font-weight:400}.task-list-item.enabled label{cursor:pointer}.task-list-item+.task-list-item{margin-top:3px}.task-list-item-checkbox{cursor:default!important;float:left;margin:.31em 0 .2em -1.3em!important;vertical-align:middle}.markdown-body{max-width:758px;overflow:visible!important;padding-bottom:40px;padding-top:40px;position:relative}.markdown-body .emoji{vertical-align:top}.markdown-body pre{border:inherit!important}.markdown-body code{color:inherit!important}.markdown-body pre code .wrapper{display:-moz-inline-flex;display:-ms-inline-flex;display:-o-inline-flex;display:inline-flex}.markdown-body pre code .gutter{float:left;overflow:hidden;-webkit-user-select:none;user-select:none}.markdown-body pre code .gutter.linenumber{border-right:3px solid #6ce26c!important;box-sizing:initial;color:#afafaf!important;cursor:default;display:inline-block;min-width:20px;padding:0 8px 0 0;position:relative;text-align:right;z-index:4}.markdown-body pre code .gutter.linenumber>span:before{content:attr(data-linenumber)}.markdown-body pre code .code{float:left;margin:0 0 0 16px}.markdown-body .gist .line-numbers{border-bottom:none;border-left:none;border-top:none}.markdown-body .gist .line-data{border:none}.markdown-body .gist table{border-collapse:inherit!important;border-spacing:0}.markdown-body code[data-gist-id]{background:none;padding:0}.markdown-body code[data-gist-id]:after,.markdown-body code[data-gist-id]:before{content:""}.markdown-body code[data-gist-id] .blob-num{border:unset}.markdown-body code[data-gist-id] table{margin-bottom:unset;overflow:unset}.markdown-body code[data-gist-id] table tr{background:unset}.markdown-body[dir=rtl] pre{direction:ltr}.markdown-body[dir=rtl] code{direction:ltr;unicode-bidi:embed}.markdown-body .alert>p:last-child{margin-bottom:0}.markdown-body pre.abc,.markdown-body pre.flow-chart,.markdown-body pre.graphviz,.markdown-body pre.mermaid,.markdown-body pre.sequence-diagram,.markdown-body pre.vega{background-color:inherit;border-radius:0;overflow:visible;text-align:center;white-space:inherit}.markdown-body pre.abc>code,.markdown-body pre.flow-chart>code,.markdown-body pre.graphviz>code,.markdown-body pre.mermaid>code,.markdown-body pre.sequence-diagram>code,.markdown-body pre.vega>code{text-align:left}.markdown-body pre.abc>svg,.markdown-body pre.flow-chart>svg,.markdown-body pre.graphviz>svg,.markdown-body pre.mermaid>svg,.markdown-body pre.sequence-diagram>svg,.markdown-body pre.vega>svg{height:100%;max-width:100%}.markdown-body pre>code.wrap{word-wrap:break-word;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space:-o-pre-wrap}.markdown-body .alert>p:last-child,.markdown-body .alert>ul:last-child{margin-bottom:0}.markdown-body summary{display:list-item}.markdown-body summary:focus{outline:none}.markdown-body details summary{cursor:pointer}.markdown-body details:not([open])>:not(summary){display:none}.markdown-body figure{margin:1em 40px}.markdown-body .mark,.markdown-body mark{background-color:#fff1a7}.vimeo,.youtube{background-color:#000;background-position:50%;background-repeat:no-repeat;background-size:contain;cursor:pointer;display:table;overflow:hidden;text-align:center}.vimeo,.youtube{position:relative;width:100%}.youtube{padding-bottom:56.25%}.vimeo img{object-fit:contain;width:100%;z-index:0}.youtube img{object-fit:cover;z-index:0}.vimeo iframe,.youtube iframe,.youtube img{height:100%;left:0;position:absolute;top:0;width:100%}.vimeo iframe,.youtube iframe{vertical-align:middle;z-index:1}.vimeo .icon,.youtube .icon{color:#fff;height:auto;left:50%;opacity:.3;position:absolute;top:50%;transform:translate(-50%,-50%);transition:opacity .2s;width:auto;z-index:0}.vimeo:hover .icon,.youtube:hover .icon{opacity:.6;transition:opacity .2s}.slideshare .inner,.speakerdeck .inner{position:relative;width:100%}.slideshare .inner iframe,.speakerdeck .inner iframe{bottom:0;height:100%;left:0;position:absolute;right:0;top:0;width:100%}.figma{display:table;padding-bottom:56.25%;position:relative;width:100%}.figma iframe{border:1px solid #eee;bottom:0;height:100%;left:0;position:absolute;right:0;top:0;width:100%}.markmap-container{height:300px}.markmap-container>svg{height:100%;width:100%}.MJX_Assistive_MathML{display:none}#MathJax_Message{z-index:1000!important}.ui-infobar{color:#777;margin:25px auto -25px;max-width:760px;position:relative;z-index:2}.toc .invisable-node{list-style-type:none}.ui-toc{bottom:20px;position:fixed;z-index:998}.ui-toc.both-mode{margin-left:8px}.ui-toc.both-mode .ui-toc-label{border-bottom-left-radius:0;border-top-left-radius:0;height:40px;padding:10px 4px}.ui-toc-label{background-color:#e6e6e6;border:none;color:#868686;transition:opacity .2s}.ui-toc .open .ui-toc-label{color:#fff;opacity:1;transition:opacity .2s}.ui-toc-label:focus{background-color:#ccc;color:#000;opacity:.3}.ui-toc-label:hover{background-color:#ccc;opacity:1;transition:opacity .2s}.ui-toc-dropdown{margin-bottom:20px;margin-top:20px;max-height:70vh;max-width:45vw;overflow:auto;padding-left:10px;padding-right:10px;text-align:inherit;width:25vw}.ui-toc-dropdown>.toc{max-height:calc(70vh - 100px);overflow:auto}.ui-toc-dropdown[dir=rtl] .nav{letter-spacing:.0029em;padding-right:0}.ui-toc-dropdown a{overflow:hidden;text-overflow:ellipsis;white-space:pre}.ui-toc-dropdown .nav>li>a{color:#767676;display:block;font-size:13px;font-weight:500;padding:4px 20px}.ui-toc-dropdown .nav>li:first-child:last-child>ul,.ui-toc-dropdown .toc.expand ul{display:block}.ui-toc-dropdown .nav>li>a:focus,.ui-toc-dropdown .nav>li>a:hover{background-color:initial;border-left:1px solid #000;color:#000;padding-left:19px;text-decoration:none}.ui-toc-dropdown[dir=rtl] .nav>li>a:focus,.ui-toc-dropdown[dir=rtl] .nav>li>a:hover{border-left:none;border-right:1px solid #000;padding-right:19px}.ui-toc-dropdown .nav>.active:focus>a,.ui-toc-dropdown .nav>.active:hover>a,.ui-toc-dropdown .nav>.active>a{background-color:initial;border-left:2px solid #000;color:#000;font-weight:700;padding-left:18px}.ui-toc-dropdown[dir=rtl] .nav>.active:focus>a,.ui-toc-dropdown[dir=rtl] .nav>.active:hover>a,.ui-toc-dropdown[dir=rtl] .nav>.active>a{border-left:none;border-right:2px solid #000;padding-right:18px}.ui-toc-dropdown .nav .nav{display:none;padding-bottom:10px}.ui-toc-dropdown .nav>.active>ul{display:block}.ui-toc-dropdown .nav .nav>li>a{font-size:12px;font-weight:400;padding-bottom:1px;padding-left:30px;padding-top:1px}.ui-toc-dropdown[dir=rtl] .nav .nav>li>a{padding-right:30px}.ui-toc-dropdown .nav .nav>li>ul>li>a{font-size:12px;font-weight:400;padding-bottom:1px;padding-left:40px;padding-top:1px}.ui-toc-dropdown[dir=rtl] .nav .nav>li>ul>li>a{padding-right:40px}.ui-toc-dropdown .nav .nav>li>a:focus,.ui-toc-dropdown .nav .nav>li>a:hover{padding-left:29px}.ui-toc-dropdown[dir=rtl] .nav .nav>li>a:focus,.ui-toc-dropdown[dir=rtl] .nav .nav>li>a:hover{padding-right:29px}.ui-toc-dropdown .nav .nav>li>ul>li>a:focus,.ui-toc-dropdown .nav .nav>li>ul>li>a:hover{padding-left:39px}.ui-toc-dropdown[dir=rtl] .nav .nav>li>ul>li>a:focus,.ui-toc-dropdown[dir=rtl] .nav .nav>li>ul>li>a:hover{padding-right:39px}.ui-toc-dropdown .nav .nav>.active:focus>a,.ui-toc-dropdown .nav .nav>.active:hover>a,.ui-toc-dropdown .nav .nav>.active>a{font-weight:500;padding-left:28px}.ui-toc-dropdown[dir=rtl] .nav .nav>.active:focus>a,.ui-toc-dropdown[dir=rtl] .nav .nav>.active:hover>a,.ui-toc-dropdown[dir=rtl] .nav .nav>.active>a{padding-right:28px}.ui-toc-dropdown .nav .nav>.active>.nav>.active:focus>a,.ui-toc-dropdown .nav .nav>.active>.nav>.active:hover>a,.ui-toc-dropdown .nav .nav>.active>.nav>.active>a{font-weight:500;padding-left:38px}.ui-toc-dropdown[dir=rtl] .nav .nav>.active>.nav>.active:focus>a,.ui-toc-dropdown[dir=rtl] .nav .nav>.active>.nav>.active:hover>a,.ui-toc-dropdown[dir=rtl] .nav .nav>.active>.nav>.active>a{padding-right:38px}.markdown-body{font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica Neue,Helvetica,Roboto,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol}html[lang^=ja] .markdown-body{font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica Neue,Helvetica,Roboto,Arial,Hiragino Kaku Gothic Pro,ヒラギノ角ゴ Pro W3,Osaka,Meiryo,メイリオ,MS Gothic,ＭＳ ゴシック,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol}html[lang=zh-tw] .markdown-body{font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica Neue,Helvetica,Roboto,Arial,PingFang TC,Microsoft JhengHei,微軟正黑,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol}html[lang=zh-cn] .markdown-body{font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica Neue,Helvetica,Roboto,Arial,PingFang SC,Microsoft YaHei,微软雅黑,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol}html .markdown-body[lang^=ja]{font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica Neue,Helvetica,Roboto,Arial,Hiragino Kaku Gothic Pro,ヒラギノ角ゴ Pro W3,Osaka,Meiryo,メイリオ,MS Gothic,ＭＳ ゴシック,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol}html .markdown-body[lang=zh-tw]{font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica Neue,Helvetica,Roboto,Arial,PingFang TC,Microsoft JhengHei,微軟正黑,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol}html .markdown-body[lang=zh-cn]{font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica Neue,Helvetica,Roboto,Arial,PingFang SC,Microsoft YaHei,微软雅黑,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol}html[lang^=ja] .ui-toc-dropdown{font-family:Source Sans Pro,Helvetica,Arial,Meiryo UI,MS PGothic,ＭＳ Ｐゴシック,sans-serif}html[lang=zh-tw] .ui-toc-dropdown{font-family:Source Sans Pro,Helvetica,Arial,Microsoft JhengHei UI,微軟正黑UI,sans-serif}html[lang=zh-cn] .ui-toc-dropdown{font-family:Source Sans Pro,Helvetica,Arial,Microsoft YaHei UI,微软雅黑UI,sans-serif}html .ui-toc-dropdown[lang^=ja]{font-family:Source Sans Pro,Helvetica,Arial,Meiryo UI,MS PGothic,ＭＳ Ｐゴシック,sans-serif}html .ui-toc-dropdown[lang=zh-tw]{font-family:Source Sans Pro,Helvetica,Arial,Microsoft JhengHei UI,微軟正黑UI,sans-serif}html .ui-toc-dropdown[lang=zh-cn]{font-family:Source Sans Pro,Helvetica,Arial,Microsoft YaHei UI,微软雅黑UI,sans-serif}.ui-affix-toc{max-height:70vh;max-width:15vw;overflow:auto;position:fixed;top:0}.back-to-top,.expand-toggle,.go-to-bottom{color:#999;display:block;font-size:12px;font-weight:500;margin-left:10px;margin-top:10px;padding:4px 10px}.back-to-top:focus,.back-to-top:hover,.expand-toggle:focus,.expand-toggle:hover,.go-to-bottom:focus,.go-to-bottom:hover{color:#563d7c;text-decoration:none}.back-to-top,.go-to-bottom{margin-top:0}.ui-user-icon{background-position:50%;background-repeat:no-repeat;background-size:cover;border-radius:50%;display:block;height:20px;margin-bottom:2px;margin-right:5px;margin-top:2px;width:20px}.ui-user-icon.small{display:inline-block;height:18px;margin:0 0 .2em;vertical-align:middle;width:18px}.ui-infobar>small>span{line-height:22px}.ui-infobar>small .dropdown{display:inline-block}.ui-infobar>small .dropdown a:focus,.ui-infobar>small .dropdown a:hover{text-decoration:none}.ui-more-info{color:#888;cursor:pointer;vertical-align:middle}.ui-more-info .fa{font-size:16px}.ui-connectedGithub,.ui-published-note{color:#888}.ui-connectedGithub{line-height:23px;white-space:nowrap}.ui-connectedGithub a.file-path{color:#888;padding-left:22px;text-decoration:none}.ui-connectedGithub a.file-path:active,.ui-connectedGithub a.file-path:hover{color:#888;text-decoration:underline}.ui-connectedGithub .fa{font-size:20px}.ui-published-note .fa{font-size:20px;vertical-align:top}.unselectable{-webkit-user-select:none;-o-user-select:none;user-select:none}.selectable{-webkit-user-select:text;-o-user-select:text;user-select:text}.inline-spoiler-section{cursor:pointer}.inline-spoiler-section .spoiler-text{background-color:#333;border-radius:2px}.inline-spoiler-section .spoiler-text>*{opacity:0}.inline-spoiler-section .spoiler-img{filter:blur(10px)}.inline-spoiler-section.raw{background-color:#333;border-radius:2px}.inline-spoiler-section.raw>*{opacity:0}.inline-spoiler-section.unveil{cursor:auto}.inline-spoiler-section.unveil .spoiler-text{background-color:#3333331a}.inline-spoiler-section.unveil .spoiler-text>*{opacity:1}.inline-spoiler-section.unveil .spoiler-img{filter:none}@media print{blockquote,div,img,pre,table{page-break-inside:avoid!important}a[href]:after{font-size:12px!important}}.markdown-body.slides{color:#222;position:relative;z-index:1}.markdown-body.slides:before{background-color:currentColor;bottom:0;box-shadow:0 0 0 50vw;content:"";display:block;left:0;position:absolute;right:0;top:0;z-index:-1}.markdown-body.slides section[data-markdown]{background-color:#fff;margin-bottom:1.5em;position:relative;text-align:center}.markdown-body.slides section[data-markdown] code{text-align:left}.markdown-body.slides section[data-markdown]:before{content:"";display:block;padding-bottom:56.23%}.markdown-body.slides section[data-markdown]>div:first-child{left:1em;max-height:100%;overflow:hidden;position:absolute;right:1em;top:50%;transform:translateY(-50%)}.markdown-body.slides section[data-markdown]>ul{display:inline-block}.markdown-body.slides>section>section+section:after{border:3px solid #777;content:"";height:1.5em;position:absolute;right:1em;top:-1.5em}.site-ui-font{font-family:Source Sans Pro,Helvetica,Arial,sans-serif}html[lang^=ja] .site-ui-font{font-family:Source Sans Pro,Helvetica,Arial,Hiragino Kaku Gothic Pro,ヒラギノ角ゴ Pro W3,Osaka,Meiryo,メイリオ,MS Gothic,ＭＳ ゴシック,sans-serif}html[lang=zh-tw] .site-ui-font{font-family:Source Sans Pro,Helvetica,Arial,PingFang TC,Microsoft JhengHei,微軟正黑,sans-serif}html[lang=zh-cn] .site-ui-font{font-family:Source Sans Pro,Helvetica,Arial,PingFang SC,Microsoft YaHei,微软雅黑,sans-serif}body{font-smoothing:subpixel-antialiased!important;-webkit-font-smoothing:subpixel-antialiased!important;-moz-osx-font-smoothing:auto!important;-webkit-overflow-scrolling:touch;font-family:Source Sans Pro,Helvetica,Arial,sans-serif;letter-spacing:.025em}html[lang^=ja] body{font-family:Source Sans Pro,Helvetica,Arial,Hiragino Kaku Gothic Pro,ヒラギノ角ゴ Pro W3,Osaka,Meiryo,メイリオ,MS Gothic,ＭＳ ゴシック,sans-serif}html[lang=zh-tw] body{font-family:Source Sans Pro,Helvetica,Arial,PingFang TC,Microsoft JhengHei,微軟正黑,sans-serif}html[lang=zh-cn] body{font-family:Source Sans Pro,Helvetica,Arial,PingFang SC,Microsoft YaHei,微软雅黑,sans-serif}abbr[title]{border-bottom:none;text-decoration:underline;-webkit-text-decoration:underline dotted;text-decoration:underline dotted}abbr[data-original-title],abbr[title]{cursor:help}body.modal-open{overflow-y:auto;padding-right:0!important}svg{text-shadow:none}
+    </style>
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    	<script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js" integrity="sha256-3Jy/GbSLrg0o9y5Z5n1uw0qxZECH7C6OQpVBgNFYa0g=" crossorigin="anonymous"></script>
+    	<script src="https://cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.min.js" integrity="sha256-g6iAfvZp+nDQ2TdTR/VVKJf3bGro4ub5fvWSWVRi2NE=" crossorigin="anonymous"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/es5-shim/4.5.9/es5-shim.min.js" integrity="sha256-8E4Is26QH0bD52WoQpcB+R/tcWQtpzlCojrybUd7Mxo=" crossorigin="anonymous"></script>
+    <![endif]-->
+</head>
+
+<body>
+    <div id="doc" class="markdown-body container-fluid comment-enabled" data-hard-breaks="true"><h1 id="嵌入式系統" data-id="嵌入式系統"><a class="anchor hidden-xs" href="#嵌入式系統" title="嵌入式系統"><span class="octicon octicon-link"></span></a><span>嵌入式系統:</span></h1><h2 id="HW01" data-id="HW01"><a class="anchor hidden-xs" href="#HW01" title="HW01"><span class="octicon octicon-link"></span></a><span>HW01:</span></h2><ul>
+<li><span>使用者輸入一圓的半徑，然後計算此圓的面積和周長。</span><br>
+<span class="mathjax"><span class="MathJax_Preview" style="color: inherit;"></span><span id="MathJax-Element-14-Frame" class="mjx-chtml MathJax_CHTML" tabindex="0" style="font-size: 113%; position: relative;" data-mathml="<math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;><mrow class=&quot;MJX-TeXAtom-ORD&quot;><mo>&amp;#x5713;</mo></mrow><mrow class=&quot;MJX-TeXAtom-ORD&quot;><mo>&amp;#x9762;</mo></mrow><mrow class=&quot;MJX-TeXAtom-ORD&quot;><mo>&amp;#x7A4D;</mo></mrow><mo>:</mo><mi>a</mi><mi>r</mi><mi>e</mi><mi>a</mi><mo>=</mo><msup><mi>r</mi><mn>2</mn></msup><mi>&amp;#x03C0;</mi></math>" role="presentation"><span id="MJXc-Node-81" class="mjx-math" aria-hidden="true"><span id="MJXc-Node-82" class="mjx-mrow"><span id="MJXc-Node-83" class="mjx-texatom"><span id="MJXc-Node-84" class="mjx-mrow"><span id="MJXc-Node-85" class="mjx-mo"><span class="mjx-char" style="padding-top: 0.445em; padding-bottom: 0.224em;"><span class="mjx-charbox MJXc-TeX-unknown-R" style="padding-bottom: 0.387em; width: 0.996em;">圓</span></span></span></span></span><span id="MJXc-Node-86" class="mjx-texatom"><span id="MJXc-Node-87" class="mjx-mrow"><span id="MJXc-Node-88" class="mjx-mo"><span class="mjx-char" style="padding-top: 0.445em; padding-bottom: 0.224em;"><span class="mjx-charbox MJXc-TeX-unknown-R" style="padding-bottom: 0.387em; width: 0.996em;">面</span></span></span></span></span><span id="MJXc-Node-89" class="mjx-texatom"><span id="MJXc-Node-90" class="mjx-mrow"><span id="MJXc-Node-91" class="mjx-mo"><span class="mjx-char" style="padding-top: 0.445em; padding-bottom: 0.224em;"><span class="mjx-charbox MJXc-TeX-unknown-R" style="padding-bottom: 0.387em; width: 0.996em;">積</span></span></span></span></span><span id="MJXc-Node-92" class="mjx-mo MJXc-space3"><span class="mjx-char MJXc-TeX-main-R" style="padding-top: 0.169em; padding-bottom: 0.335em;">:</span></span><span id="MJXc-Node-93" class="mjx-mi MJXc-space3"><span class="mjx-char MJXc-TeX-math-I" style="padding-top: 0.224em; padding-bottom: 0.279em;">a</span></span><span id="MJXc-Node-94" class="mjx-mi"><span class="mjx-char MJXc-TeX-math-I" style="padding-top: 0.224em; padding-bottom: 0.279em;">r</span></span><span id="MJXc-Node-95" class="mjx-mi"><span class="mjx-char MJXc-TeX-math-I" style="padding-top: 0.224em; padding-bottom: 0.279em;">e</span></span><span id="MJXc-Node-96" class="mjx-mi"><span class="mjx-char MJXc-TeX-math-I" style="padding-top: 0.224em; padding-bottom: 0.279em;">a</span></span><span id="MJXc-Node-97" class="mjx-mo MJXc-space3"><span class="mjx-char MJXc-TeX-main-R" style="padding-top: 0.058em; padding-bottom: 0.335em;">=</span></span><span id="MJXc-Node-98" class="mjx-msubsup MJXc-space3"><span class="mjx-base"><span id="MJXc-Node-99" class="mjx-mi"><span class="mjx-char MJXc-TeX-math-I" style="padding-top: 0.224em; padding-bottom: 0.279em;">r</span></span></span><span class="mjx-sup" style="font-size: 70.7%; vertical-align: 0.513em; padding-left: 0px; padding-right: 0.071em;"><span id="MJXc-Node-100" class="mjx-mn" style=""><span class="mjx-char MJXc-TeX-main-R" style="padding-top: 0.39em; padding-bottom: 0.335em;">2</span></span></span></span><span id="MJXc-Node-101" class="mjx-mi"><span class="mjx-char MJXc-TeX-math-I" style="padding-top: 0.224em; padding-bottom: 0.279em; padding-right: 0.003em;">π</span></span></span></span><span class="MJX_Assistive_MathML" role="presentation"><math xmlns="http://www.w3.org/1998/Math/MathML"><mrow class="MJX-TeXAtom-ORD"><mo>圓</mo></mrow><mrow class="MJX-TeXAtom-ORD"><mo>面</mo></mrow><mrow class="MJX-TeXAtom-ORD"><mo>積</mo></mrow><mo>:</mo><mi>a</mi><mi>r</mi><mi>e</mi><mi>a</mi><mo>=</mo><msup><mi>r</mi><mn>2</mn></msup><mi>π</mi></math></span></span><script type="math/tex" id="MathJax-Element-14">圓面積:area=r^2\pi</script></span><br>
+<span class="mathjax"><span class="MathJax_Preview" style="color: inherit;"></span><span id="MathJax-Element-15-Frame" class="mjx-chtml MathJax_CHTML" tabindex="0" style="font-size: 113%; position: relative;" data-mathml="<math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;><mrow class=&quot;MJX-TeXAtom-ORD&quot;><mo>&amp;#x5713;</mo></mrow><mrow class=&quot;MJX-TeXAtom-ORD&quot;><mo>&amp;#x5468;</mo></mrow><mrow class=&quot;MJX-TeXAtom-ORD&quot;><mo>&amp;#x9577;</mo></mrow><mo>:</mo><mi>p</mi><mi>e</mi><mi>r</mi><mi>i</mi><mi>m</mi><mi>e</mi><mi>t</mi><mi>e</mi><mi>r</mi><mo>=</mo><mn>2</mn><mi>&amp;#x03C0;</mi><mi>r</mi></math>" role="presentation"><span id="MJXc-Node-102" class="mjx-math" aria-hidden="true"><span id="MJXc-Node-103" class="mjx-mrow"><span id="MJXc-Node-104" class="mjx-texatom"><span id="MJXc-Node-105" class="mjx-mrow"><span id="MJXc-Node-106" class="mjx-mo"><span class="mjx-char" style="padding-top: 0.445em; padding-bottom: 0.224em;"><span class="mjx-charbox MJXc-TeX-unknown-R" style="padding-bottom: 0.387em; width: 0.996em;">圓</span></span></span></span></span><span id="MJXc-Node-107" class="mjx-texatom"><span id="MJXc-Node-108" class="mjx-mrow"><span id="MJXc-Node-109" class="mjx-mo"><span class="mjx-char" style="padding-top: 0.445em; padding-bottom: 0.224em;"><span class="mjx-charbox MJXc-TeX-unknown-R" style="padding-bottom: 0.387em; width: 0.996em;">周</span></span></span></span></span><span id="MJXc-Node-110" class="mjx-texatom"><span id="MJXc-Node-111" class="mjx-mrow"><span id="MJXc-Node-112" class="mjx-mo"><span class="mjx-char" style="padding-top: 0.445em; padding-bottom: 0.224em;"><span class="mjx-charbox MJXc-TeX-unknown-R" style="padding-bottom: 0.387em; width: 0.996em;">長</span></span></span></span></span><span id="MJXc-Node-113" class="mjx-mo MJXc-space3"><span class="mjx-char MJXc-TeX-main-R" style="padding-top: 0.169em; padding-bottom: 0.335em;">:</span></span><span id="MJXc-Node-114" class="mjx-mi MJXc-space3"><span class="mjx-char MJXc-TeX-math-I" style="padding-top: 0.224em; padding-bottom: 0.445em;">p</span></span><span id="MJXc-Node-115" class="mjx-mi"><span class="mjx-char MJXc-TeX-math-I" style="padding-top: 0.224em; padding-bottom: 0.279em;">e</span></span><span id="MJXc-Node-116" class="mjx-mi"><span class="mjx-char MJXc-TeX-math-I" style="padding-top: 0.224em; padding-bottom: 0.279em;">r</span></span><span id="MJXc-Node-117" class="mjx-mi"><span class="mjx-char MJXc-TeX-math-I" style="padding-top: 0.445em; padding-bottom: 0.279em;">i</span></span><span id="MJXc-Node-118" class="mjx-mi"><span class="mjx-char MJXc-TeX-math-I" style="padding-top: 0.224em; padding-bottom: 0.279em;">m</span></span><span id="MJXc-Node-119" class="mjx-mi"><span class="mjx-char MJXc-TeX-math-I" style="padding-top: 0.224em; padding-bottom: 0.279em;">e</span></span><span id="MJXc-Node-120" class="mjx-mi"><span class="mjx-char MJXc-TeX-math-I" style="padding-top: 0.39em; padding-bottom: 0.279em;">t</span></span><span id="MJXc-Node-121" class="mjx-mi"><span class="mjx-char MJXc-TeX-math-I" style="padding-top: 0.224em; padding-bottom: 0.279em;">e</span></span><span id="MJXc-Node-122" class="mjx-mi"><span class="mjx-char MJXc-TeX-math-I" style="padding-top: 0.224em; padding-bottom: 0.279em;">r</span></span><span id="MJXc-Node-123" class="mjx-mo MJXc-space3"><span class="mjx-char MJXc-TeX-main-R" style="padding-top: 0.058em; padding-bottom: 0.335em;">=</span></span><span id="MJXc-Node-124" class="mjx-mn MJXc-space3"><span class="mjx-char MJXc-TeX-main-R" style="padding-top: 0.39em; padding-bottom: 0.335em;">2</span></span><span id="MJXc-Node-125" class="mjx-mi"><span class="mjx-char MJXc-TeX-math-I" style="padding-top: 0.224em; padding-bottom: 0.279em; padding-right: 0.003em;">π</span></span><span id="MJXc-Node-126" class="mjx-mi"><span class="mjx-char MJXc-TeX-math-I" style="padding-top: 0.224em; padding-bottom: 0.279em;">r</span></span></span></span><span class="MJX_Assistive_MathML" role="presentation"><math xmlns="http://www.w3.org/1998/Math/MathML"><mrow class="MJX-TeXAtom-ORD"><mo>圓</mo></mrow><mrow class="MJX-TeXAtom-ORD"><mo>周</mo></mrow><mrow class="MJX-TeXAtom-ORD"><mo>長</mo></mrow><mo>:</mo><mi>p</mi><mi>e</mi><mi>r</mi><mi>i</mi><mi>m</mi><mi>e</mi><mi>t</mi><mi>e</mi><mi>r</mi><mo>=</mo><mn>2</mn><mi>π</mi><mi>r</mi></math></span></span><script type="math/tex" id="MathJax-Element-15">圓周長:perimeter=2\pi r</script></span></li>
+</ul><pre><code class="python hljs"><div class="wrapper"><div class="gutter linenumber"><span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span></div><div class="code"><span class="hljs-keyword">import</span> math <span class="hljs-comment">#引入函式庫</span>
+r = <span class="hljs-built_in">eval</span>(<span class="hljs-built_in">input</span>(<span class="hljs-string">'輸入半徑'</span>))<span class="hljs-comment">#等待輸入，輸入後經由eval轉成數字</span>
+area = (r**<span class="hljs-number">2</span>)*math.pi 
+perimeter = <span class="hljs-number">2</span>*math.pi*r
+<span class="hljs-built_in">print</span>(<span class="hljs-string">f'圓半徑=<span class="hljs-subst">{r}</span>'</span>)
+<span class="hljs-built_in">print</span>(<span class="hljs-string">f'圓面積=<span class="hljs-subst">{area}</span>,周長=<span class="hljs-subst">{perimeter:<span class="hljs-number">.2</span>f}</span>'</span>)
+</div></div></code></pre><ul>
+<li><span>計算BMI，執行結果要有體重、高度、BMI以及顯示是否過胖過瘦。</span><br>
+<span class="mathjax"><span class="MathJax_Preview" style="color: inherit;"></span><span id="MathJax-Element-16-Frame" class="mjx-chtml MathJax_CHTML" tabindex="0" style="font-size: 113%; position: relative;" data-mathml="<math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;><mi>b</mi><mi>m</mi><mi>i</mi><mo>=</mo><mi>w</mi><mrow class=&quot;MJX-TeXAtom-ORD&quot;><mo>/</mo></mrow><msup><mi>h</mi><mn>2</mn></msup></math>" role="presentation"><span id="MJXc-Node-127" class="mjx-math" aria-hidden="true"><span id="MJXc-Node-128" class="mjx-mrow"><span id="MJXc-Node-129" class="mjx-mi"><span class="mjx-char MJXc-TeX-math-I" style="padding-top: 0.445em; padding-bottom: 0.279em;">b</span></span><span id="MJXc-Node-130" class="mjx-mi"><span class="mjx-char MJXc-TeX-math-I" style="padding-top: 0.224em; padding-bottom: 0.279em;">m</span></span><span id="MJXc-Node-131" class="mjx-mi"><span class="mjx-char MJXc-TeX-math-I" style="padding-top: 0.445em; padding-bottom: 0.279em;">i</span></span><span id="MJXc-Node-132" class="mjx-mo MJXc-space3"><span class="mjx-char MJXc-TeX-main-R" style="padding-top: 0.058em; padding-bottom: 0.335em;">=</span></span><span id="MJXc-Node-133" class="mjx-mi MJXc-space3"><span class="mjx-char MJXc-TeX-math-I" style="padding-top: 0.224em; padding-bottom: 0.279em;">w</span></span><span id="MJXc-Node-134" class="mjx-texatom"><span id="MJXc-Node-135" class="mjx-mrow"><span id="MJXc-Node-136" class="mjx-mo"><span class="mjx-char MJXc-TeX-main-R" style="padding-top: 0.445em; padding-bottom: 0.611em;">/</span></span></span></span><span id="MJXc-Node-137" class="mjx-msubsup"><span class="mjx-base"><span id="MJXc-Node-138" class="mjx-mi"><span class="mjx-char MJXc-TeX-math-I" style="padding-top: 0.445em; padding-bottom: 0.279em;">h</span></span></span><span class="mjx-sup" style="font-size: 70.7%; vertical-align: 0.513em; padding-left: 0px; padding-right: 0.071em;"><span id="MJXc-Node-139" class="mjx-mn" style=""><span class="mjx-char MJXc-TeX-main-R" style="padding-top: 0.39em; padding-bottom: 0.335em;">2</span></span></span></span></span></span><span class="MJX_Assistive_MathML" role="presentation"><math xmlns="http://www.w3.org/1998/Math/MathML"><mi>b</mi><mi>m</mi><mi>i</mi><mo>=</mo><mi>w</mi><mrow class="MJX-TeXAtom-ORD"><mo>/</mo></mrow><msup><mi>h</mi><mn>2</mn></msup></math></span></span><script type="math/tex" id="MathJax-Element-16">bmi = w/h^2</script></span></li>
+</ul><pre><code class="python hljs">w = <span class="hljs-built_in">eval</span>(<span class="hljs-built_in">input</span>(<span class="hljs-string">'體重(kg)'</span>))
+h = <span class="hljs-built_in">eval</span>(<span class="hljs-built_in">input</span>(<span class="hljs-string">'身高(m)'</span>))
+bmi = w/(h**<span class="hljs-number">2</span>)
+<span class="hljs-built_in">print</span>(<span class="hljs-string">f'bmi=<span class="hljs-subst">{bmi}</span>'</span>)
+<span class="hljs-keyword">if</span> bmi&lt;<span class="hljs-number">18.5</span>:
+	<span class="hljs-built_in">print</span>(<span class="hljs-string">'過輕'</span>)
+<span class="hljs-keyword">elif</span> bmi&lt;<span class="hljs-number">25</span>:
+	<span class="hljs-built_in">print</span>(<span class="hljs-string">'正常'</span>)
+<span class="hljs-keyword">else</span>:
+	<span class="hljs-built_in">print</span>(<span class="hljs-string">'過重'</span>)
+</code></pre><ul>
+<li><span>使用者輸入一矩形的長和寬，然後計算此矩形的面積和周長。</span></li>
+</ul><pre><code class="python hljs"><div class="wrapper"><div class="gutter linenumber"><span></span>
+<span></span>
+<span></span></div><div class="code">l = <span class="hljs-built_in">eval</span>(<span class="hljs-built_in">input</span>(<span class="hljs-string">'矩形的長'</span>))
+w = <span class="hljs-built_in">eval</span>(<span class="hljs-built_in">input</span>(<span class="hljs-string">'矩形的寬'</span>))
+<span class="hljs-built_in">print</span>(<span class="hljs-string">f'周長=<span class="hljs-subst">{<span class="hljs-number">2</span>*(l+w)}</span>，面積=<span class="hljs-subst">{l*w}</span>'</span>)
+</div></div></code></pre><ul>
+<li><span>使用者輸入 0~15 的數字，然後顯示其所對應的轉為十六進制數值。</span><br>
+<span>p.s:</span><br>
+<span>x:16進制、o:8進制、b:2進制</span></li>
+</ul><pre><code class="python hljs"><div class="wrapper"><div class="gutter linenumber"><span></span>
+<span></span></div><div class="code">input_data = <span class="hljs-built_in">eval</span>(<span class="hljs-built_in">input</span>(<span class="hljs-string">'輸入0~15:'</span>))
+<span class="hljs-built_in">print</span>(<span class="hljs-string">f'input_data=<span class="hljs-subst">{input_data:x}</span>'</span>)
+</div></div></code></pre><h2 id="HW02" data-id="HW02"><a class="anchor hidden-xs" href="#HW02" title="HW02"><span class="octicon octicon-link"></span></a><span>HW02:</span></h2><ul>
+<li><span>使用 while 迴圈及 for 迴圈印出 26 個大寫的英文字母，其中大寫的英文字母 A 所對應的 ASCII 碼是 65，大寫的 Z 所對應的 ASCII 碼是 90。</span></li>
+</ul><pre><code class="python hljs"><div class="wrapper"><div class="gutter linenumber"><span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span></div><div class="code"><span class="hljs-comment"># while</span>
+i = <span class="hljs-number">65</span> <span class="hljs-comment">#初始化</span>
+<span class="hljs-keyword">while</span> i&lt;=<span class="hljs-number">90</span>:
+	<span class="hljs-built_in">print</span>(<span class="hljs-built_in">chr</span>(i),end=<span class="hljs-string">''</span>)
+	i +=<span class="hljs-number">1</span>
+<span class="hljs-built_in">print</span>()<span class="hljs-comment">#換行用</span>
+<span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">65</span>,<span class="hljs-number">91</span>):
+	<span class="hljs-built_in">print</span>(<span class="hljs-built_in">chr</span>(i),end=<span class="hljs-string">''</span>)
+</div></div></code></pre><ul>
+<li><span>，以巢狀迴圈印出格式 A*B=C 的九九乘法表。</span></li>
+</ul><pre><code class="python hljs"><div class="wrapper"><div class="gutter linenumber"><span></span>
+<span></span>
+<span></span>
+<span></span></div><div class="code"><span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">1</span>,<span class="hljs-number">10</span>):
+	<span class="hljs-keyword">for</span> j <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">1</span>,<span class="hljs-number">10</span>):
+		<span class="hljs-built_in">print</span>(<span class="hljs-string">f'<span class="hljs-subst">{j}</span>*<span class="hljs-subst">{i}</span>=<span class="hljs-subst">{i*j:02d}</span>'</span>,end=<span class="hljs-string">' '</span>)
+	<span class="hljs-built_in">print</span>()<span class="hljs-comment">#換行用</span>
+</div></div></code></pre><ul>
+<li><span>試撰寫一程式，輸出以下結果</span><br>
+<img src="https://i.imgur.com/TwQmfdg.png" alt="" loading="lazy"></li>
+</ul><pre><code class="python hljs"><div class="wrapper"><div class="gutter linenumber"><span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span></div><div class="code"><span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">1</span>,<span class="hljs-number">10</span>):<span class="hljs-comment">#上到下共9層</span>
+	<span class="hljs-keyword">for</span> j <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(i,<span class="hljs-number">9</span>):<span class="hljs-comment">#第i層空白數量</span>
+		<span class="hljs-built_in">print</span>(<span class="hljs-string">' '</span>,end=<span class="hljs-string">''</span>)
+	<span class="hljs-keyword">for</span> k <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">1</span>,i+<span class="hljs-number">1</span>):<span class="hljs-comment">#第i層數字數量(數字+空白)</span>
+		<span class="hljs-built_in">print</span>(i,end=<span class="hljs-string">' '</span>)
+	<span class="hljs-built_in">print</span>()<span class="hljs-comment">#換行</span>
+</div></div></code></pre><ul>
+<li><span>以電腦選號產生大樂透號碼的程式，若你覺得這組號碼，不喜歡或有重複的號碼產生時，則可以再來一次</span></li>
+</ul><pre><code class="python hljs"><div class="wrapper"><div class="gutter linenumber"><span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span></div><div class="code"><span class="hljs-keyword">import</span> random
+a = <span class="hljs-string">'1'</span> <span class="hljs-comment">#控制是否滿意</span>
+<span class="hljs-keyword">while</span> a==<span class="hljs-string">'1'</span>:<span class="hljs-comment">#當a==1時重複迴圈</span>
+	<span class="hljs-built_in">print</span>(<span class="hljs-string">'part1'</span>)
+	<span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">6</span>):<span class="hljs-comment">#產生6組號碼</span>
+		lotto = random.randint(<span class="hljs-number">1</span>,<span class="hljs-number">38</span>)<span class="hljs-comment">#1~38的隨機數，包含1和38</span>
+		<span class="hljs-built_in">print</span>(<span class="hljs-string">f'<span class="hljs-subst">{lotto:2d}</span>'</span>,end=<span class="hljs-string">' '</span>)
+	<span class="hljs-built_in">print</span>(<span class="hljs-string">'\npart 2'</span>)
+	<span class="hljs-built_in">print</span>(<span class="hljs-string">f'<span class="hljs-subst">{random.randint(<span class="hljs-number">1</span>,<span class="hljs-number">8</span>)}</span>'</span>)
+	a = <span class="hljs-built_in">input</span>(<span class="hljs-string">'輸入1再來一次，其他自動結束'</span>)
+</div></div></code></pre><ul>
+<li><span>由電腦產生 1 到 100 其中某一數字，再由使用者猜數字，並告知使用者猜的數字大於或是小於答案。</span></li>
+</ul><pre><code class="python hljs"><div class="wrapper"><div class="gutter linenumber"><span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span></div><div class="code"><span class="hljs-keyword">import</span> random
+ans = <span class="hljs-number">0</span> <span class="hljs-comment">#存放使用者輸入的答案</span>
+floor = <span class="hljs-number">0</span> <span class="hljs-comment">#下限</span>
+ceil = <span class="hljs-number">101</span> <span class="hljs-comment">#上限</span>
+secret = random.randint(floor+<span class="hljs-number">1</span>,ceil-<span class="hljs-number">1</span>)<span class="hljs-comment">#產生1~100的隨機整數</span>
+<span class="hljs-keyword">while</span> ans!=secret:<span class="hljs-comment">#當和答案不同時</span>
+	ans = <span class="hljs-built_in">eval</span>(<span class="hljs-built_in">input</span>(<span class="hljs-string">'輸入數字'</span>))
+	<span class="hljs-keyword">if</span> ans&lt;=floor <span class="hljs-keyword">or</span> ans&gt;=ceil:
+		<span class="hljs-built_in">print</span>(<span class="hljs-string">'超出範圍了'</span>)
+		<span class="hljs-keyword">continue</span> <span class="hljs-comment">#直接回到迴圈開頭，不繼續執行下面的程式</span>
+	<span class="hljs-keyword">if</span> ans&lt;secret:
+		floor = ans <span class="hljs-comment">#更新下限</span>
+		<span class="hljs-built_in">print</span>(<span class="hljs-string">f'太小<span class="hljs-subst">{floor}</span>~<span class="hljs-subst">{ceil}</span>'</span>)
+	<span class="hljs-keyword">elif</span> ans&gt;secret:
+		ceil = ans <span class="hljs-comment">#更新上限</span>
+		<span class="hljs-built_in">print</span>(<span class="hljs-string">f'太大<span class="hljs-subst">{floor}</span>~<span class="hljs-subst">{ceil}</span>'</span>)
+	<span class="hljs-keyword">else</span>:
+		<span class="hljs-built_in">print</span>(<span class="hljs-string">'正確'</span>)
+</div></div></code></pre><ul>
+<li><span>輸入兩個整數，然後求出其最大公因數</span></li>
+</ul><pre><code class="python hljs"><div class="wrapper"><div class="gutter linenumber"><span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span></div><div class="code">a = <span class="hljs-built_in">eval</span>(<span class="hljs-built_in">input</span>(<span class="hljs-string">'輸入一個數字'</span>))
+b = <span class="hljs-built_in">eval</span>(<span class="hljs-built_in">input</span>(<span class="hljs-string">'輸入一個數字'</span>))
+gcd = <span class="hljs-built_in">min</span>(a,b)<span class="hljs-comment">#假設當前最大公因為兩者的最小值</span>
+<span class="hljs-keyword">while</span> gcd&gt;<span class="hljs-number">1</span>:<span class="hljs-comment">#當找到的最大公因為1時，不繼續找了</span>
+	<span class="hljs-keyword">if</span> a%gcd==<span class="hljs-number">0</span> <span class="hljs-keyword">and</span> b%gcd==<span class="hljs-number">0</span>:<span class="hljs-comment">#當a和b可同時被gcd整除時</span>
+		<span class="hljs-built_in">print</span>(<span class="hljs-string">f'<span class="hljs-subst">{a}</span>和<span class="hljs-subst">{b}</span>的最大公因=<span class="hljs-subst">{gcd}</span>'</span>)
+		<span class="hljs-keyword">break</span> <span class="hljs-comment">#結束迴圈</span>
+	gcd-=<span class="hljs-number">1</span><span class="hljs-comment">#當a和b無法同時被gcd整除時，gcd-1</span>
+</div></div></code></pre><ul>
+<li><span>分別以 for 迴圈和 while 計算 1~100 中 5 的倍數和。</span></li>
+</ul><pre><code class="python hljs"><div class="wrapper"><div class="gutter linenumber"><span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span></div><div class="code">total = <span class="hljs-number">0</span>
+i = <span class="hljs-number">1</span>
+<span class="hljs-keyword">while</span> i&lt;=<span class="hljs-number">100</span>:
+	<span class="hljs-keyword">if</span> i%<span class="hljs-number">5</span>==<span class="hljs-number">0</span>:
+		total += i
+<span class="hljs-built_in">print</span>(<span class="hljs-string">f'總共是<span class="hljs-subst">{total}</span>'</span>)
+
+total = <span class="hljs-number">0</span>
+<span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">1</span>,<span class="hljs-number">101</span>):
+	<span class="hljs-keyword">if</span> i%<span class="hljs-number">5</span>==<span class="hljs-number">0</span>:
+	total += i
+<span class="hljs-built_in">print</span>(<span class="hljs-string">f'總共是<span class="hljs-subst">{total}</span>'</span>)
+</div></div></code></pre><ul>
+<li><span>印出 50 個介於 1~49 之間的亂數。</span></li>
+</ul><pre><code class="python hljs"><div class="wrapper"><div class="gutter linenumber"><span></span>
+<span></span>
+<span></span></div><div class="code"><span class="hljs-keyword">import</span> random
+<span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">50</span>):
+	<span class="hljs-built_in">print</span>(<span class="hljs-string">f'<span class="hljs-subst">{random.randint(<span class="hljs-number">1</span>,<span class="hljs-number">49</span>)}</span>'</span>,end=<span class="hljs-string">','</span>)
+</div></div></code></pre><ul>
+<li><span>以亂數產生器分別產生 1000 個 1~200 之間的亂數，從這些亂數中計算有多少個是偶數，有多少個是奇數，以及有多少個是5的倍數。</span></li>
+</ul><pre><code class="python hljs"><div class="wrapper"><div class="gutter linenumber"><span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span></div><div class="code"><span class="hljs-keyword">import</span> random
+odd_num = <span class="hljs-number">0</span>	<span class="hljs-comment">#計算奇數數量</span>
+even_num = <span class="hljs-number">0</span><span class="hljs-comment">#計算偶數數量</span>
+F_num = <span class="hljs-number">0</span><span class="hljs-comment">#計算5的倍數的數量</span>
+<span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">1000</span>):
+	n = random.randint(<span class="hljs-number">1</span>,<span class="hljs-number">200</span>)
+	<span class="hljs-keyword">if</span> n%<span class="hljs-number">2</span>==<span class="hljs-number">1</span>:<span class="hljs-comment">#奇數</span>
+		odd_num+=<span class="hljs-number">1</span>;
+	<span class="hljs-keyword">else</span>:<span class="hljs-comment">#偶數</span>
+		even_num+=<span class="hljs-number">1</span>;
+	<span class="hljs-keyword">if</span> n%<span class="hljs-number">5</span>==<span class="hljs-number">0</span>:<span class="hljs-comment">#五的倍數</span>
+		F_num+=<span class="hljs-number">1</span>
+<span class="hljs-built_in">print</span>(<span class="hljs-string">f'奇數數量<span class="hljs-subst">{odd_num}</span>，偶數數量<span class="hljs-subst">{even_num}</span>，五的倍數數量=<span class="hljs-subst">{F_num}</span>'</span>)
+</div></div></code></pre><ul>
+<li><span>印出前 100 個質數，並且每一列印出十個質數。</span></li>
+</ul><pre><code class="python hljs"><div class="wrapper"><div class="gutter linenumber"><span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span></div><div class="code">ANS = [<span class="hljs-number">2</span>]<span class="hljs-comment">#存放質數</span>
+i = <span class="hljs-number">3</span>
+<span class="hljs-keyword">while</span> <span class="hljs-built_in">len</span>(ANS)&lt;<span class="hljs-number">100</span>:<span class="hljs-comment">#串列中元素小於100個</span>
+	<span class="hljs-keyword">for</span> n <span class="hljs-keyword">in</span> ANS:<span class="hljs-comment">#從現有的質數中取值去判斷</span>
+		<span class="hljs-keyword">if</span> i%n==<span class="hljs-number">0</span>:<span class="hljs-comment">#如果可以被整除表示不是質數</span>
+			<span class="hljs-keyword">break</span>
+		<span class="hljs-keyword">if</span> n==ANS[-<span class="hljs-number">1</span>]:<span class="hljs-comment">#如果執行到最後，則判斷為質數</span>
+			ANS.append(i)<span class="hljs-comment">#將結果存入質數串列中</span>
+	i+=<span class="hljs-number">1</span><span class="hljs-comment">#往下找下一個質數</span>
+<span class="hljs-comment">#顯示輸出</span>
+<span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">100</span>):
+	<span class="hljs-built_in">print</span>(<span class="hljs-string">f'<span class="hljs-subst">{ANS[i]:4d}</span>'</span>,end=<span class="hljs-string">' '</span>)
+	<span class="hljs-keyword">if</span> i%<span class="hljs-number">10</span>==<span class="hljs-number">9</span>:<span class="hljs-comment">#每10個換行一次</span>
+		<span class="hljs-built_in">print</span>()
+</div></div></code></pre><h2 id="HW03" data-id="HW03"><a class="anchor hidden-xs" href="#HW03" title="HW03"><span class="octicon octicon-link"></span></a><span>HW03:</span></h2><ul>
+<li><span>試撰寫一函式，使用不定數迴圈產生大樂透號碼，可讓使用者決定是否要繼續產生大樂透號碼。</span></li>
+</ul><pre><code class="python hljs"><div class="wrapper"><div class="gutter linenumber"><span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span></div><div class="code"><span class="hljs-keyword">import</span> random
+<span class="hljs-keyword">def</span> <span class="hljs-title function_">loto</span>():
+	<span class="hljs-built_in">print</span>(<span class="hljs-string">'part1'</span>)
+	<span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">6</span>):<span class="hljs-comment">#產生6組號碼</span>
+		<span class="hljs-built_in">print</span>(<span class="hljs-string">f'<span class="hljs-subst">{random.randint(<span class="hljs-number">1</span>,<span class="hljs-number">38</span>):2d}</span>'</span>,end=<span class="hljs-string">' '</span>)
+	<span class="hljs-built_in">print</span>(<span class="hljs-string">'\npart 2'</span>)
+	<span class="hljs-built_in">print</span>(<span class="hljs-string">f'<span class="hljs-subst">{random.randint(<span class="hljs-number">1</span>,<span class="hljs-number">8</span>)}</span>'</span>)
+
+a = <span class="hljs-string">'1'</span><span class="hljs-comment">#控制迴圈</span>
+<span class="hljs-keyword">while</span> a==<span class="hljs-string">'1'</span>:
+	loto()<span class="hljs-comment">#呼叫函數</span>
+	a = <span class="hljs-built_in">input</span>(<span class="hljs-string">'輸入1再來一次，輸入其他自動結束'</span>)
+</div></div></code></pre><ul>
+<li><span>計算兩數的總和及平均數，並將其回傳。</span></li>
+</ul><pre><code class="python hljs"><div class="wrapper"><div class="gutter linenumber"><span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span></div><div class="code"><span class="hljs-keyword">def</span> <span class="hljs-title function_">hw</span>():
+	x = <span class="hljs-built_in">eval</span>(<span class="hljs-built_in">input</span>(<span class="hljs-string">'輸入一個數字'</span>))
+	y = <span class="hljs-built_in">eval</span>(<span class="hljs-built_in">input</span>(<span class="hljs-string">'輸入一個數字'</span>))
+	total = x+y
+	avg = total/<span class="hljs-number">2</span>
+	<span class="hljs-keyword">return</span> total,avg
+
+total,avg = hw()
+<span class="hljs-built_in">print</span>(<span class="hljs-string">f'總和=<span class="hljs-subst">{total}</span>\n平均=<span class="hljs-subst">{avg}</span>'</span>)
+</div></div></code></pre><ul>
+<li><span>試撰寫一函式 GPA，並接收由 main() 函式所傳送的分數，然後回傳其對應的 GPA。此程式利用不定數迴圈輸入分數。有關 GPA 的對應表格如下所示：</span><br>
+<img src="https://i.imgur.com/MBOeuTz.png" alt="" loading="lazy"></li>
+</ul><pre><code class="python hljs"><div class="wrapper"><div class="gutter linenumber"><span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span></div><div class="code"><span class="hljs-keyword">def</span> <span class="hljs-title function_">GPA</span>(<span class="hljs-params">x</span>):
+	<span class="hljs-keyword">if</span> x&gt;=<span class="hljs-number">80</span>:
+		<span class="hljs-built_in">print</span>(<span class="hljs-string">'A'</span>)
+	<span class="hljs-keyword">elif</span> x&gt;=<span class="hljs-number">70</span>:
+		<span class="hljs-built_in">print</span>(<span class="hljs-string">'B'</span>)
+	<span class="hljs-keyword">elif</span> x&gt;=<span class="hljs-number">60</span>:
+		<span class="hljs-built_in">print</span>(<span class="hljs-string">'C'</span>)
+	<span class="hljs-keyword">elif</span> x&gt;=<span class="hljs-number">50</span>:
+		<span class="hljs-built_in">print</span>(<span class="hljs-string">'D'</span>)
+	<span class="hljs-keyword">else</span>:
+		<span class="hljs-built_in">print</span>(<span class="hljs-string">'E'</span>)
+
+score = <span class="hljs-built_in">eval</span>(<span class="hljs-built_in">input</span>(<span class="hljs-string">'輸入分數，輸入-1自動停止'</span>))
+<span class="hljs-keyword">while</span> score!=-<span class="hljs-number">1</span>:
+	GPA(score)
+	score = <span class="hljs-built_in">eval</span>(<span class="hljs-built_in">input</span>(<span class="hljs-string">'輸入分數，輸入-1自動停止'</span>))
+</div></div></code></pre><ul>
+<li><span>試撰寫一程式，提示使用者輸入一字串，然後判斷此字串是否為迴文 (palindrome)。迴文的定義是字串由左至右讀取，或是由右至左讀取是相同者稱之。</span></li>
+</ul><pre><code class="python hljs"><div class="wrapper"><div class="gutter linenumber"><span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span></div><div class="code"><span class="hljs-keyword">def</span> <span class="hljs-title function_">check_palindrome</span>(<span class="hljs-params">text</span>):
+	length = <span class="hljs-built_in">len</span>(text)
+	<span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(length):
+		<span class="hljs-keyword">if</span>(text[i]!=text[-<span class="hljs-number">1</span>-i]):
+			<span class="hljs-keyword">return</span> <span class="hljs-string">'不是迴文'</span>
+	<span class="hljs-keyword">return</span> <span class="hljs-string">'是迴文'</span>
+<span class="hljs-built_in">print</span>(check_palindrome(<span class="hljs-built_in">input</span>(<span class="hljs-string">'輸入文字:'</span>)))
+</div></div></code></pre><ul>
+<li><span>5.請撰寫一程式，提示使用者輸入密碼，若密碼符合下述規則，則顯示 Valid password，否則顯示 Invalid password。</span><br>
+<span>假設密碼的規則如下:</span><br>
+<span>必須至少八個字元；</span><br>
+<span>必須包含有一字母和數字；</span><br>
+<span>必須包含至少三個數字。</span></li>
+</ul><pre><code class="python hljs"><div class="wrapper"><div class="gutter linenumber"><span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span></div><div class="code"><span class="hljs-keyword">def</span> <span class="hljs-title function_">check_password</span>(<span class="hljs-params">password</span>):
+	length = <span class="hljs-built_in">len</span>(password)
+	<span class="hljs-keyword">if</span> <span class="hljs-keyword">not</span>(length&gt;=<span class="hljs-number">8</span> <span class="hljs-keyword">and</span> length&lt;=<span class="hljs-number">10</span>):<span class="hljs-comment">#判斷是否為8~10位</span>
+		<span class="hljs-keyword">return</span> <span class="hljs-string">'Invalid password'</span><span class="hljs-comment">#不符合直接結束</span>
+	<span class="hljs-keyword">if</span> <span class="hljs-keyword">not</span>(password.isalnum()):<span class="hljs-comment">#判斷是否為數字和英文組成</span>
+		<span class="hljs-keyword">return</span> <span class="hljs-string">'Invalid password'</span>
+	count = <span class="hljs-number">0</span><span class="hljs-comment">#計算數字數量</span>
+	<span class="hljs-keyword">for</span> a <span class="hljs-keyword">in</span> password:
+		<span class="hljs-keyword">if</span> a.isdigit():<span class="hljs-comment">#判斷是否為數字</span>
+			count+=<span class="hljs-number">1</span>
+	<span class="hljs-keyword">if</span> length-count&lt;<span class="hljs-number">1</span>:<span class="hljs-comment">#至少要包含有一字母，至少三個數字</span>
+		<span class="hljs-keyword">return</span> <span class="hljs-string">'Invalid password'</span>
+	<span class="hljs-keyword">if</span> length&lt;<span class="hljs-number">3</span>:<span class="hljs-comment">#至少要包含三個數字</span>
+		<span class="hljs-keyword">return</span> <span class="hljs-string">'Invalid password'</span>
+	<span class="hljs-keyword">return</span> <span class="hljs-string">'Valid password'</span>
+
+<span class="hljs-built_in">print</span>(check_password(<span class="hljs-built_in">input</span>(<span class="hljs-string">'輸入密碼'</span>)))
+</div></div></code></pre><ul>
+<li><span>由使用者輸入一個數字n，並使用遞迴函式來計算出N!。</span></li>
+</ul><pre><code class="python hljs"><div class="wrapper"><div class="gutter linenumber"><span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span></div><div class="code"><span class="hljs-keyword">def</span> <span class="hljs-title function_">Recursion</span>(<span class="hljs-params">x</span>):
+	<span class="hljs-keyword">if</span> x==<span class="hljs-number">1</span>:
+		<span class="hljs-keyword">return</span> <span class="hljs-number">1</span>
+	<span class="hljs-keyword">else</span>:
+		<span class="hljs-keyword">return</span> x*Recursion(x-<span class="hljs-number">1</span>)<span class="hljs-comment">#x*(x-1)......*1</span>
+<span class="hljs-built_in">print</span>(Recursion(<span class="hljs-built_in">eval</span>(<span class="hljs-built_in">input</span>(<span class="hljs-string">'輸入數字'</span>))))
+</div></div></code></pre><ul>
+<li><span>寫一函式，提示使用者輸入長方形的長及寬，再撰寫一函式，計算出長方形的面積。</span></li>
+</ul><pre><code class="python hljs"><div class="wrapper"><div class="gutter linenumber"><span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span></div><div class="code"><span class="hljs-keyword">def</span> <span class="hljs-title function_">hw</span>(<span class="hljs-params">l,w</span>):
+	<span class="hljs-keyword">return</span> l*w
+l = <span class="hljs-built_in">eval</span>(<span class="hljs-built_in">input</span>(<span class="hljs-string">'輸入長'</span>))
+w = <span class="hljs-built_in">eval</span>(<span class="hljs-built_in">input</span>(<span class="hljs-string">'輸入長'</span>))
+<span class="hljs-built_in">print</span>(<span class="hljs-string">f'長方形的面積=<span class="hljs-subst">{hw(l,w)}</span>'</span>)
+</div></div></code></pre><ul>
+<li><span>試撰寫一程式，模擬2018年底的台北市長選舉，首先在menu函式中製作選單，如下所示:</span><br>
+<span>1、	小柯</span><br>
+<span>2、	小丁</span><br>
+<span>3、	小姚</span><br>
+<span>Enter your choice:</span><br>
+<span>假設你有十張選票，利用定數迴圈投下你喜歡的候選人，每次投完後，請顯示目前候選人的選票，注意，當你不是投給這三人時，將以廢票計算之。</span></li>
+</ul><pre><code class="python hljs"><div class="wrapper"><div class="gutter linenumber"><span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span></div><div class="code">candidate = []
+ticket = []
+<span class="hljs-keyword">def</span> <span class="hljs-title function_">make_menu</span>(<span class="hljs-params">*people</span>):
+	<span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">1</span>,<span class="hljs-built_in">len</span>(people)+<span class="hljs-number">1</span>):
+		<span class="hljs-built_in">print</span>(<span class="hljs-string">f'<span class="hljs-subst">{i}</span>.<span class="hljs-subst">{people[i-<span class="hljs-number">1</span>]}</span>'</span>)
+		ticket.append(<span class="hljs-number">0</span>)
+		candidate.append(people[i-<span class="hljs-number">1</span>])
+	ticket.append(<span class="hljs-number">0</span>)
+	candidate.append(<span class="hljs-string">'廢票'</span>)
+
+make_menu(<span class="hljs-string">'小柯'</span>,<span class="hljs-string">'小丁'</span>,<span class="hljs-string">'小姚'</span>)
+<span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">10</span>):
+	choice = <span class="hljs-built_in">input</span>(<span class="hljs-string">'輸入你要投誰?'</span>)
+	<span class="hljs-keyword">if</span> choice ==<span class="hljs-string">'1'</span>:
+		ticket[<span class="hljs-number">0</span>]+=<span class="hljs-number">1</span>
+	<span class="hljs-keyword">elif</span> choice ==<span class="hljs-string">'2'</span>:
+		ticket[<span class="hljs-number">1</span>]+=<span class="hljs-number">1</span>
+	<span class="hljs-keyword">elif</span> choice ==<span class="hljs-string">'3'</span>:
+		ticket[<span class="hljs-number">2</span>]+=<span class="hljs-number">1</span>
+	<span class="hljs-keyword">else</span>:
+		ticket[<span class="hljs-number">3</span>]+=<span class="hljs-number">1</span>
+<span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">1</span>,<span class="hljs-built_in">len</span>(ticket)+<span class="hljs-number">1</span>):
+	<span class="hljs-built_in">print</span>(<span class="hljs-string">f'<span class="hljs-subst">{i}</span>.<span class="hljs-subst">{candidate[i-<span class="hljs-number">1</span>]}</span>:<span class="hljs-subst">{ticket[i-<span class="hljs-number">1</span>]}</span>票'</span>)
+</div></div></code></pre><ul>
+<li>
+<ol start="3">
+<li><span>試撰寫一程式，提示使用者輸入密碼，若密碼符合下述規則，則顯示 Valid password，否則顯示 Invalid password，如輸入的密碼規則符合，則再次請使用者輸入一次一樣的密碼，並驗證密碼有沒有輸入錯誤。</span><br>
+<span>假設密碼的規則如下:</span><br>
+<span>必須介於8~10個字元；</span><br>
+<span>必須包含有一字母和數字；</span><br>
+<span>必須包含至少三個數字。</span></li>
+</ol>
+</li>
+</ul><pre><code class="python hljs"><div class="wrapper"><div class="gutter linenumber"><span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span></div><div class="code"><span class="hljs-keyword">def</span> <span class="hljs-title function_">check_password</span>(<span class="hljs-params">password</span>):
+	length = <span class="hljs-built_in">len</span>(password)
+	<span class="hljs-keyword">if</span> <span class="hljs-keyword">not</span>(length&gt;=<span class="hljs-number">8</span> <span class="hljs-keyword">and</span> length&lt;=<span class="hljs-number">10</span>):<span class="hljs-comment">#判斷是否為8~10位</span>
+		<span class="hljs-keyword">return</span> <span class="hljs-string">'Invalid password'</span><span class="hljs-comment">#不符合直接結束</span>
+	<span class="hljs-keyword">if</span> <span class="hljs-keyword">not</span>(password.isalnum()):<span class="hljs-comment">#判斷是否為數字和英文組成</span>
+		<span class="hljs-keyword">return</span> <span class="hljs-string">'Invalid password'</span>
+	count = <span class="hljs-number">0</span><span class="hljs-comment">#計算數字數量</span>
+	<span class="hljs-keyword">for</span> a <span class="hljs-keyword">in</span> password:
+		<span class="hljs-keyword">if</span> a.isdigit():<span class="hljs-comment">#判斷是否為數字</span>
+			count+=<span class="hljs-number">1</span>
+	<span class="hljs-keyword">if</span> length-count&lt;<span class="hljs-number">1</span>:<span class="hljs-comment">#至少要包含有一字母，至少三個數字</span>
+		<span class="hljs-keyword">return</span> <span class="hljs-string">'Invalid password'</span>
+	<span class="hljs-keyword">if</span> length&lt;<span class="hljs-number">3</span>:<span class="hljs-comment">#至少要包含三個數字</span>
+		<span class="hljs-keyword">return</span> <span class="hljs-string">'Invalid password'</span>
+	<span class="hljs-keyword">return</span> <span class="hljs-string">'Valid password'</span>
+	
+ans = <span class="hljs-string">'Invalid password'</span>
+password_1=<span class="hljs-string">''</span>
+password_2=<span class="hljs-string">''</span>
+
+<span class="hljs-keyword">while</span> ans ==<span class="hljs-string">'Invalid password'</span>:
+	password_1 = <span class="hljs-built_in">input</span>(<span class="hljs-string">'輸入密碼'</span>)
+	ans = check_password(password_1)
+	<span class="hljs-built_in">print</span>(ans)
+
+<span class="hljs-keyword">while</span> password_1 != password_2:
+	password_2 = <span class="hljs-built_in">input</span>(<span class="hljs-string">'請再次輸入密碼'</span>)
+<span class="hljs-built_in">print</span>(<span class="hljs-string">'驗證通過'</span>)
+</div></div></code></pre><ul>
+<li>
+<ol start="4">
+<li><span>試撰寫一函式反轉字串，函式的標頭檔如下:def reverse(string):撰寫一測試程式提示使用者輸入字串，呼叫reverse函式並顯示反轉的字串。</span></li>
+</ol>
+</li>
+</ul><pre><code class="python hljs"><div class="wrapper"><div class="gutter linenumber"><span></span>
+<span></span>
+<span></span></div><div class="code"><span class="hljs-keyword">def</span> <span class="hljs-title function_">reverse</span>(<span class="hljs-params">text</span>):
+	<span class="hljs-keyword">return</span> text[::-<span class="hljs-number">1</span>]<span class="hljs-comment">#反轉</span>
+<span class="hljs-built_in">print</span>(reverse(<span class="hljs-built_in">input</span>(<span class="hljs-string">'輸入'</span>)))
+</div></div></code></pre><h2 id="HW04" data-id="HW04"><a class="anchor hidden-xs" href="#HW04" title="HW04"><span class="octicon octicon-link"></span></a><span>HW04:</span></h2></div>
+    <div class="ui-toc dropup unselectable hidden-print" style="display:none;">
+        <div class="pull-right dropdown">
+            <a id="tocLabel" class="ui-toc-label btn btn-default" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false" title="Table of content">
+                <i class="fa fa-bars"></i>
+            </a>
+            <ul id="ui-toc" class="ui-toc-dropdown dropdown-menu" aria-labelledby="tocLabel">
+                <div class="toc"><ul class="nav">
+<li class=""><a href="#嵌入式系統" title="嵌入式系統:">嵌入式系統:</a><ul class="nav">
+<li><a href="#HW01" title="HW01:">HW01:</a></li>
+<li><a href="#HW02" title="HW02:">HW02:</a></li>
+<li class=""><a href="#HW03" title="HW03:">HW03:</a></li>
+<li><a href="#HW04" title="HW04:">HW04:</a></li>
+</ul>
+</li>
+</ul>
+</div><div class="toc-menu"><a class="expand-toggle" href="#">全部展開</a><a class="back-to-top" href="#">回到頂部</a><a class="go-to-bottom" href="#">移至底部</a></div>
+            </ul>
+        </div>
+    </div>
+    <div id="ui-toc-affix" class="ui-affix-toc ui-toc-dropdown unselectable hidden-print" data-spy="affix" style="top:17px;display:none;" null null>
+        <div class="toc"><ul class="nav">
+<li class=""><a href="#嵌入式系統" title="嵌入式系統:">嵌入式系統:</a><ul class="nav">
+<li><a href="#HW01" title="HW01:">HW01:</a></li>
+<li><a href="#HW02" title="HW02:">HW02:</a></li>
+<li class=""><a href="#HW03" title="HW03:">HW03:</a></li>
+<li><a href="#HW04" title="HW04:">HW04:</a></li>
+</ul>
+</li>
+</ul>
+</div><div class="toc-menu"><a class="expand-toggle" href="#">全部展開</a><a class="back-to-top" href="#">回到頂部</a><a class="go-to-bottom" href="#">移至底部</a></div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gist-embed/2.6.0/gist-embed.min.js" integrity="sha256-KyF2D6xPIJUW5sUDSs93vWyZm+1RzIpKCexxElmxl8g=" crossorigin="anonymous" defer></script>
+    <script>
+        var markdown = $(".markdown-body");
+        //smooth all hash trigger scrolling
+        function smoothHashScroll() {
+            var hashElements = $("a[href^='#']").toArray();
+            for (var i = 0; i < hashElements.length; i++) {
+                var element = hashElements[i];
+                var $element = $(element);
+                var hash = element.hash;
+                if (hash) {
+                    $element.on('click', function (e) {
+                        // store hash
+                        var hash = this.hash;
+                        if ($(hash).length <= 0) return;
+                        // prevent default anchor click behavior
+                        e.preventDefault();
+                        // animate
+                        $('body, html').stop(true, true).animate({
+                            scrollTop: $(hash).offset().top
+                        }, 100, "linear", function () {
+                            // when done, add hash to url
+                            // (default click behaviour)
+                            window.location.hash = hash;
+                        });
+                    });
+                }
+            }
+        }
+
+        smoothHashScroll();
+        var toc = $('.ui-toc');
+        var tocAffix = $('.ui-affix-toc');
+        var tocDropdown = $('.ui-toc-dropdown');
+        //toc
+        tocDropdown.click(function (e) {
+            e.stopPropagation();
+        });
+
+        var enoughForAffixToc = true;
+
+        function generateScrollspy() {
+            $(document.body).scrollspy({
+                target: ''
+            });
+            $(document.body).scrollspy('refresh');
+            if (enoughForAffixToc) {
+                toc.hide();
+                tocAffix.show();
+            } else {
+                tocAffix.hide();
+                toc.show();
+            }
+            $(document.body).scroll();
+        }
+
+        function windowResize() {
+            //toc right
+            var paddingRight = parseFloat(markdown.css('padding-right'));
+            var right = ($(window).width() - (markdown.offset().left + markdown.outerWidth() - paddingRight));
+            toc.css('right', right + 'px');
+            //affix toc left
+            var newbool;
+            var rightMargin = (markdown.parent().outerWidth() - markdown.outerWidth()) / 2;
+            //for ipad or wider device
+            if (rightMargin >= 133) {
+                newbool = true;
+                var affixLeftMargin = (tocAffix.outerWidth() - tocAffix.width()) / 2;
+                var left = markdown.offset().left + markdown.outerWidth() - affixLeftMargin;
+                tocAffix.css('left', left + 'px');
+            } else {
+                newbool = false;
+            }
+            if (newbool != enoughForAffixToc) {
+                enoughForAffixToc = newbool;
+                generateScrollspy();
+            }
+        }
+        $(window).resize(function () {
+            windowResize();
+        });
+        $(document).ready(function () {
+            windowResize();
+            generateScrollspy();
+        });
+
+        //remove hash
+        function removeHash() {
+            window.location.hash = '';
+        }
+
+        var backtotop = $('.back-to-top');
+        var gotobottom = $('.go-to-bottom');
+
+        backtotop.click(function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+            if (scrollToTop)
+                scrollToTop();
+            removeHash();
+        });
+        gotobottom.click(function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+            if (scrollToBottom)
+                scrollToBottom();
+            removeHash();
+        });
+
+        var toggle = $('.expand-toggle');
+        var tocExpand = false;
+
+        checkExpandToggle();
+        toggle.click(function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+            tocExpand = !tocExpand;
+            checkExpandToggle();
+        })
+
+        function checkExpandToggle () {
+            var toc = $('.ui-toc-dropdown .toc');
+            var toggle = $('.expand-toggle');
+            if (!tocExpand) {
+                toc.removeClass('expand');
+                toggle.text('Expand all');
+            } else {
+                toc.addClass('expand');
+                toggle.text('Collapse all');
+            }
+        }
+
+        function scrollToTop() {
+            $('body, html').stop(true, true).animate({
+                scrollTop: 0
+            }, 100, "linear");
+        }
+
+        function scrollToBottom() {
+            $('body, html').stop(true, true).animate({
+                scrollTop: $(document.body)[0].scrollHeight
+            }, 100, "linear");
+        }
+    </script>
+</body>
+
+</html>
