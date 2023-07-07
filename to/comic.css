@@ -1,0 +1,23 @@
+body {
+		text-align: center;
+		padding-top: 50px;
+		font-family: Arial, sans-serif;
+}
+img {
+    height: auto;
+}
+@media screen and (max-width: 1800px) {
+  img {
+    width: 90%;
+  }
+}
+
+@media screen and (min-width: 1800px) {
+  img {
+    width: 50%;
+  }
+}
+
+  
+h1 {color: #333;}
+p {color: #333;}
