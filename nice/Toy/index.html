@@ -6,8 +6,16 @@
 <title>剪刀石頭布 模擬</title>
 <link rel="stylesheet" type="text/css" href="data/style.css">
 <style>
+    .container {
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 2px;
+        text-align: center;
+    }
     #canvas {
-        border: 2px solid #000;
+        width: 100%;
+        height: auto;
+        border: 1px solid #000;
         background-color: #f5f5f5;
     }
     #countdown {
@@ -17,8 +25,10 @@
 </style>
 </head>
 <body>
-<canvas id="canvas" width="600" height="600"></canvas>
-<div id="countdown">3</div>
+<div class="container">
+    <canvas id="canvas" width="600" height="600"></canvas>
+    <div id="countdown">3</div>
+</div>
 
 <script>
     const canvas = document.getElementById("canvas");
@@ -122,7 +132,7 @@
     }
 
     // 遊戲循環
-    function gameLoop() {
+    /*function gameLoop() {
         if (new Set(labels).size === 1) {
             winner = labels[0];
             showWinner();
@@ -132,10 +142,11 @@
             drawPoints();
             requestAnimationFrame(gameLoop);
         }
-    }
+    }*/
     function startGameLoop() {
         const intervalId = setInterval(() => {
             if (new Set(labels).size === 1) {
+                winner = labels[0];
                 clearInterval(intervalId); // 所有點變成同一標籤，結束循環
                 showWinner();
             } else {
