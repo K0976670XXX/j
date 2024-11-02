@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>剪刀石頭布 模擬</title>
+<style>
+    body {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        font-family: Arial, sans-serif;
+    }
+    #canvas {
+        border: 2px solid #000;
+        background-color: #f5f5f5;
+    }
+    #countdown {
+        font-size: 48px;
+        color: blue;
+    }
+</style>
+</head>
+<body>
+<canvas id="canvas" width="600" height="600"></canvas>
+<div id="countdown">3</div>
+
+<script>
+    const canvas = document.getElementById("canvas");
+    const ctx = canvas.getContext("2d");
+    const size = 600;
+    const imgSize = 50;
+    const countdownElem = document.getElementById("countdown");
+    let countdown = 3;
+    let points = [];
+    let labels = [];
+    let directions = [];
+    let winner = null;
+
+    // 初始化參數
+    const n = parseInt(prompt("輸入剪刀、石頭和布各自的數量"), 10);
+    const numPoints = n * 3;
+    const num_A = n;
+    const num_B = n;
+    const num_C = n;
+
+    // 圖片資源
+    const images = {
+        A: new Image(),
+        B: new Image(),
+        C: new Image()
+    };
+    images.A.src = "data/A.png";
+    images.B.src = "data/B.png";
+    images.C.src = "data/C.png";
+
+    // 初始化點
+    function init() {
+        for (let i = 0; i < numPoints; i++) {
+            points.push({
+                x: Math.random() * (size - imgSize),
+                y: Math.random() * (size - imgSize)
+            });
+            directions.push(Math.random() * 2 * Math.PI);
+        }
+        labels = Array(num_A).fill("A").concat(Array(num_B).fill("B"), Array(num_C).fill("C"));
+        labels.sort(() => Math.random() - 0.5);  // 隨機排序
+    }
+
+    // 倒數計時
+    function countdownTimer() {
+        if (countdown > 0) {
+            countdownElem.textContent = countdown;
+            countdown--;
+            setTimeout(countdownTimer, 1000);
+        } else {
+            countdownElem.textContent = "開始!";
+            setTimeout(() => countdownElem.style.display = "none", 500);
+            //gameLoop();
+            startGameLoop(); // 倒數結束後開始遊戲循環
+        }
+    }
+
+    // 移動點並檢查碰撞
+    function movePoints() {
+        points.forEach((point, i) => {
+            const angle = directions[i] + (Math.random() - 0.5) * Math.PI;
+            const stepSize = Math.random() * 16 + 1;
+            point.x += stepSize * Math.cos(angle);
+            point.y += stepSize * Math.sin(angle);
+
+            // 邊界檢查
+            point.x = Math.max(Math.min(point.x, size - imgSize), imgSize);
+            point.y = Math.max(Math.min(point.y, size - imgSize), imgSize);
+
+            directions[i] = angle;
+        });
+    }
+
+    function checkAndUpdate() {
+        for (let i = 0; i < points.length; i++) {
+            for (let j = i + 1; j < points.length; j++) {
+                const dist = Math.hypot(points[i].x - points[j].x, points[i].y - points[j].y);
+                if (dist < imgSize) {
+                    // 碰撞規則
+                    if ((labels[i] === "A" && labels[j] === "B") || (labels[i] === "B" && labels[j] === "A")) {
+                        labels[i] = labels[j] = "B";
+                    } else if ((labels[i] === "B" && labels[j] === "C") || (labels[i] === "C" && labels[j] === "B")) {
+                        labels[i] = labels[j] = "C";
+                    } else if ((labels[i] === "C" && labels[j] === "A") || (labels[i] === "A" && labels[j] === "C")) {
+                        labels[i] = labels[j] = "A";
+                    }
+                }
+            }
+        }
+    }
+
+    // 繪製圖像
+    function drawPoints() {
+        ctx.clearRect(0, 0, size, size);
+        points.forEach((point, i) => {
+            const img = images[labels[i]];
+            ctx.drawImage(img, point.x - imgSize / 2, point.y - imgSize / 2, imgSize, imgSize);
+        });
+        ctx.font = "24px Arial";
+        ctx.fillText(`剪刀: ${labels.filter(x => x === "A").length}, 石頭: ${labels.filter(x => x === "B").length}, 布: ${labels.filter(x => x === "C").length}`, 10, 30);
+    }
+
+    // 遊戲循環
+    function gameLoop() {
+        if (new Set(labels).size === 1) {
+            winner = labels[0];
+            showWinner();
+        } else {
+            movePoints();
+            checkAndUpdate();
+            drawPoints();
+            requestAnimationFrame(gameLoop);
+        }
+    }
+    function startGameLoop() {
+        const intervalId = setInterval(() => {
+            if (new Set(labels).size === 1) {
+                clearInterval(intervalId); // 所有點變成同一標籤，結束循環
+                showWinner();
+            } else {
+                movePoints();
+                checkAndUpdate();
+                drawPoints();
+            }
+        }, 100); // 每 100 毫秒（0.1 秒）更新一次畫面
+    }
+    // 顯示獲勝畫面
+    function showWinner() {
+        ctx.clearRect(0, 0, size, size);
+        ctx.font = "48px Arial";
+        ctx.fillStyle = "blue";
+        ctx.textAlign = "center";
+        ctx.fillText(winner === "A" ? "剪刀 Wins!" : winner === "B" ? "石頭 Wins!" : "布 Wins!", size / 2, size / 2);
+    }
+
+    init();
+    countdownTimer();
+</script>
+</body>
+</html>
