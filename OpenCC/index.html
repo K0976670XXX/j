@@ -31,6 +31,7 @@
     <!-- 輸入框的按鈕組 -->
     <div class="button-group" id="inputButtonGroup">
         <button onclick="setInputType('tw', this)">繁體(臺灣)</button>
+        <button onclick="setInputType('twp', this)">繁體(臺灣,含用詞轉換)</button>
         <button onclick="setInputType('hk', this)">繁體(香港)</button>
         <button onclick="setInputType('cn', this)">簡體</button>
     </div>
@@ -53,20 +54,22 @@
     <div id="description" style="margin-top: 20px; font-size: 16px; line-height: 0.2;">
       <p>說明:</p>
       <p>&emsp;- 用於進行簡體繁體轉換</p>
-      <p>&emsp;- 繁體（臺灣,含用詞轉換)，會對用詞進行轉換ex:自行车->腳踏車</p>
+      <p>&emsp;- 繁體（臺灣,含用詞轉換)，會對用詞進行轉換</p>
+      <p>&emsp;&emsp;ex:自行车->腳踏車</p>
       <p>&emsp;- 完全本地運行，不會對你的資料進行保存</p>
       <p>&emsp;- 使用 <a href="https://github.com/BYVoid/OpenCC" target="_blank">OpenCC</a> 進行實作</p>
     </div>
 </body>
 <script>
     // 預設語言類型
-    let input_type = 'cn';
-    let output_type = 'tw';
+    let input_type = 'tw';
+    let output_type = 'cn';
 
     // 設置輸入類型並鎖定選定按鈕
     function setInputType(type, button) {
         input_type = type;
         lockButton('inputButtonGroup', button);
+        checkWarning(); // 檢查警告訊息
         convert(); // 更新輸出
     }
 
@@ -74,6 +77,7 @@
     function setOutputType(type, button) {
         output_type = type;
         lockButton('outputButtonGroup', button);
+        checkWarning(); // 檢查警告訊息
         convert(); // 更新輸出
     }
 
@@ -84,6 +88,13 @@
             button.disabled = false;
         });
         selectedButton.disabled = true; // 鎖定當前選定的按鈕
+    }
+
+    // 檢查是否顯示警告訊息
+    function checkWarning() {
+        if (input_type === 'twp' && output_type === 'tw') {
+            alert("警告：此用法可能會顯示繁體字但包含中國用詞。");
+        }
     }
 
     // 自動更新輸出框
@@ -104,5 +115,6 @@
             alert("複製失敗：" + err);
         });
     }
+
 </script>
 </html>
