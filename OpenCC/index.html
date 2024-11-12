@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>繁體↔簡體</title>
+    <script src="https://cdn.jsdelivr.net/npm/opencc-js@1.0.5/dist/umd/full.js"></script>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <style>
+        textarea, #traditionalOutput {
+            width: 95%;
+            margin-top: -5px;
+            margin-bottom: 5px;
+        }
+        .button-group {
+            margin-bottom: 10px;
+        }
+        .button-group button {
+            margin-right: 10px;
+        }
+        .button-group button, #copyButton {
+            font-size: 0.8em;
+            padding: 8px 8px;
+            margin-right: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h1>繁體↔簡體</h1><br>
+
+    <!-- 輸入框的按鈕組 -->
+    <div class="button-group" id="inputButtonGroup">
+        <button onclick="setInputType('tw', this)">繁體(臺灣)</button>
+        <button onclick="setInputType('hk', this)">繁體(香港)</button>
+        <button onclick="setInputType('cn', this)">簡體</button>
+    </div>
+    <h4>輸入區</h4><br>
+    <textarea id="simplifiedInput" rows="4" oninput="convert()"></textarea><br><br>
+    <hr>
+    <!-- 輸出框的按鈕組 -->
+    <div class="button-group" id="outputButtonGroup">
+        <button onclick="setOutputType('tw', this)">繁體(臺灣)</button>
+        <button onclick="setOutputType('twp', this)">繁體（臺灣,含用詞轉換)</button>
+        <button onclick="setOutputType('hk', this)">繁體(香港)</button>
+        <button onclick="setOutputType('cn', this)">簡體</button>
+    </div>
+
+    <h4>輸出區</h4>
+    <div id="traditionalOutput" style="border: 1px solid #ddd; padding: 10px;"></div>
+    <div class="button-group"><button onclick="copyToClipboard()">複製</button></div>
+    
+    
+    <div id="description" style="margin-top: 20px; font-size: 16px; line-height: 0.2;">
+      <p>說明:</p>
+      <p>&emsp;- 用於進行簡體繁體轉換</p>
+      <p>&emsp;- 繁體（臺灣,含用詞轉換)，會對用詞進行轉換ex:自行车->腳踏車</p>
+      <p>&emsp;- 完全本地運行，不會對你的資料進行保存</p>
+      <p>&emsp;- 使用 <a href="https://github.com/BYVoid/OpenCC" target="_blank">OpenCC</a> 進行實作</p>
+    </div>
+</body>
+<script>
+    // 預設語言類型
+    let input_type = 'cn';
+    let output_type = 'tw';
+
+    // 設置輸入類型並鎖定選定按鈕
+    function setInputType(type, button) {
+        input_type = type;
+        lockButton('inputButtonGroup', button);
+        convert(); // 更新輸出
+    }
+
+    // 設置輸出類型並鎖定選定按鈕
+    function setOutputType(type, button) {
+        output_type = type;
+        lockButton('outputButtonGroup', button);
+        convert(); // 更新輸出
+    }
+
+    // 鎖定選定按鈕並釋放同組其他按鈕
+    function lockButton(groupId, selectedButton) {
+        const buttons = document.querySelectorAll(`#${groupId} button`);
+        buttons.forEach(button => {
+            button.disabled = false;
+        });
+        selectedButton.disabled = true; // 鎖定當前選定的按鈕
+    }
+
+    // 自動更新輸出框
+    async function convert() {
+        const simplifiedText = document.getElementById('simplifiedInput').value;
+        // 使用 OpenCC.js 進行簡繁體轉換
+        const converter = await OpenCC.Converter({ from: input_type, to: output_type });
+        const traditionalText = converter(simplifiedText);
+        document.getElementById('traditionalOutput').innerText = traditionalText;
+    }
+
+    // 複製輸出內容到剪貼板
+    function copyToClipboard() {
+        const outputText = document.getElementById('traditionalOutput').innerText;
+        navigator.clipboard.writeText(outputText).then(() => {
+            alert("已複製到剪貼板！");
+        }).catch(err => {
+            alert("複製失敗：" + err);
+        });
+    }
+</script>
+</html>

@@ -1,0 +1,137 @@
+body {
+    background-color: #f4f4f4;
+    padding: 0;
+    font-family: 'Microsoft JhengHei', sans-serif;
+    width: 60%;
+    margin: 0 auto;
+    font-size: 18px; /* 默認字體大小 */
+}
+.build {
+    text-align: center;
+    padding: 20px;
+}
+.build img{
+    width: 30%;
+    height: auto;
+}
+li {
+    padding: 5px;
+}
+
+h1, h2, h3, h4, h5 {margin: 0;}
+
+h1 {font-size: 36px; }
+h2 {font-size: 30px; }
+h3 {font-size: 24px; }
+h4 {font-size: 20px; }
+h5 {font-size: 18px; }
+
+img,
+video {
+    width: 90%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+}
+
+/* 針對手機端設備調整樣式 */
+@media only screen and (max-width: 700px) {
+    body {
+        width: 90%;
+        font-size: 16px; /* 手機端字體大小 */
+    }
+
+    img,
+    video {
+        width: 90%;
+    }
+
+    h1 {font-size: 28px; }
+    h2 {font-size: 24px; }
+    h3 {font-size: 20px; }
+    h4 {font-size: 18px; }
+    h5 {font-size: 16px; }
+    
+    .build img{width: 70%;height: auto;}
+}
+
+/* 針對平板設備調整樣式 */
+@media only screen and (min-width: 701px) and (max-width: 1024px) {
+    body {
+        width: 80%;
+        font-size: 20px; /* 平板端字體大小 */
+    }
+
+    img,
+    video {
+        width: 80%;
+    }
+
+    h1 {font-size: 34px; }
+    h2 {font-size: 28px; }
+    h3 {font-size: 24px; }
+    h4 {font-size: 22px; }
+    h5 {font-size: 20px; }
+}
+
+/* 深色模式和淺色模式的基本設置 */
+@media (prefers-color-scheme: light) {
+  body {
+    background-color: #ffffff;
+    color: #1b1b1b;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    transition: background-color 0.3s, color 0.3s;
+    line-height: 1.6;
+    padding: 0;
+  }
+  table {
+    border-collapse: collapse;
+    border: 1px solid #ddd;
+  }
+  th, td {
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+    text-align: left;
+  }
+  th {
+    background-color: #f4f4f4;
+    color: #1b1b1b;
+  }
+  tr:nth-child(even) {
+    background-color: #f9f9f9;
+  }
+  a {
+    color: blue;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  body {
+    background-color: #1b1b1b;
+    color: #ffffff;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    transition: background-color 0.3s, color 0.3s;
+    line-height: 1.6;
+    padding: 0;
+  }
+  table {
+    border-collapse: collapse;
+    border: 1px solid #555;
+  }
+  th, td {
+    padding: 12px 15px;
+    border: 1px solid #555;
+    text-align: left;
+  }
+  th {
+    background-color: #333;
+    color: #ffffff;
+  }
+  tr:nth-child(even) {
+    background-color: #2a2a2a;
+  }
+  a {
+    color: #ADD8E6; /* 淺藍色 */
+  }
+}
+
